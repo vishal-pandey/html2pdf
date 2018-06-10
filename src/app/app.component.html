@@ -1,0 +1,100 @@
+<div class="parent">
+
+
+
+
+<!-- div to be shown in pdf -->
+<section id="GenPDF" class="gen">
+
+	<!-- Done -->
+	<div class="header">
+	  <section class="top">
+	    <span><img id="blah" src="#"width="308" height="80" /></span>
+	    <span>{{ edition }}</span>
+	  </section>
+	  <section class="bottom">
+	    <div>{{ title }}</div>
+	  </section>
+	</div>
+
+
+
+	<section class="industry-watch" >
+	
+		<div class="head">
+			<div class="line"></div> <div>Industry Watch</div> <div class="line"></div>
+		</div>
+		<ng-container *ngFor="let in of noOfIndustry">
+		  <div class="header1">
+		  <section class="top1">
+		    <div>{{ industryTitle[in] }}</div>
+		    <div ><img id="blah1" src="{{industryImage[in]}}"width="926" height="351" /></div>
+		  </section>
+		  <section class="bottom1">
+		    <!-- <div>{{ title1 }}</div> -->
+		    <div >{{industryDescripton[in]}}</div>
+		  </section>
+
+		  <section class="link"> <a href="{{industryButtonLink[in]}}"><button> {{industryBUttonTitle[in]}} </button></a> </section>
+		</div>
+		</ng-container>
+
+	</section>
+
+
+</section>
+ <!-- div to be shown in pdf ends-->
+
+
+
+
+<!-- form -->
+
+
+
+<section class="form">
+	<h3>Industry Watch</h3>
+	<section class="industr-form" *ngFor="let in of noOfIndustry">
+		<div>Image<input type='file' id="imgInp1" #industryImage (change)="loadIndustryImage($event, industryImg.files[0], in)" #industryImg></div>
+	  <div>Title  <input placeholder="edition" (keyup)="onTitle($event, theTitle.value, in)" #theTitle></div>
+		<div>Description<input placeholder="title" (keyup)="onDescription($event, theDescription.value, in)" #theDescription></div>
+		<div>Buntton title <input type="text" placeholder = "button title " (keyup)="onButtonTitle($event, theButtonTitle.value, in)" #theButtonTitle></div>
+		<div>Buntton Link <input type="text" placeholder = "button link " (keyup)="onButtonLink($event, theButtonLink.value, in)" #theButtonLink></div>
+
+	</section>
+	<button class="btn" (click)="addIndustry()">Add</button>
+</section>
+
+
+		<!-- <div>Image<input type='file' id="imgInp1" /></div>
+	  <div>Title  <input [(ngModel)]="edition1" placeholder="edition" ></div>
+		<div>Description<input [(ngModel)]="title1" placeholder="title"></div> -->
+
+
+
+
+  <div class="ff">
+    <div>Logo image<input type='file' id="imgInp" /></div>
+    <div>Edition (Exition x | month x)  <input [(ngModel)]="edition" placeholder="edition"></div>
+    <div>Title of the document  <input [(ngModel)]="title" placeholder="title"></div>
+    
+
+
+
+    <div *ngIf="show">
+
+        <div>Logo image<input type='file' id="imgInp1" /></div>
+        <div>Edition (Exition x | month x)  <input [(ngModel)]="edition1" placeholder="edition"></div>
+        <div>Title of the document  <input [(ngModel)]="title1" placeholder="title"></div>
+        
+    </div>
+
+     <div><button (click)="generatePdf()"> Generate PDF</button></div>
+
+    <button (click)="toggle()" id="bt">
+        {{buttonName}}
+    </button>
+  </div>
+
+<!-- form ends -->
+</div>
